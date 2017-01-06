@@ -215,7 +215,9 @@ export class Layout extends Component {
           submitFeedback={() => {}}
         />
         <div className="main full-height">
-          <ModalShell />
+          <ModalShell
+            close={() => dispatch(hideModal())}
+          />
           <div className="main-inner">
             {!errors.status ?
               this.props.children :
@@ -255,6 +257,7 @@ Layout.propTypes = {
 };
 
 function select(state) {
+  console.log('modal state: ', state.modal);
   return {
     username: state.authentication.username,
     emailHash: state.authentication.emailHash,
