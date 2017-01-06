@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 
 export default function ModalShell(props) {
   const { title, body, open } = props;
-
   return (
     <div
       className={`modal-overlay ${open ? 'open' : ''}`}
