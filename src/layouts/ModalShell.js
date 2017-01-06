@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 
 export default function ModalShell(props) {
-  console.log('props: ', props);
   const { title, body, open } = props;
 
   return (

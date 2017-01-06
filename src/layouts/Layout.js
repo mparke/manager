@@ -257,7 +257,6 @@ Layout.propTypes = {
 };
 
 function select(state) {
-  console.log('modal state: ', state.modal);
   return {
     username: state.authentication.username,
     emailHash: state.authentication.emailHash,
