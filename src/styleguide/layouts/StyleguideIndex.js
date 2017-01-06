@@ -9,16 +9,10 @@ export class StyleguideIndex extends Component {
   render() {
     return (
       <div className="Styleguide-container">
-        <header className="Styleguide-header">
-          {/*<div className="container">*/}
-          {/*<Link to="/Styleguide">*/}
-          {/*<span className="MainHeader-logo fa fa-linode" />*/}
-          {/*<span className="MainHeader-title">Linode</span>*/}
-          {/*</Link>*/}
-          {/*</div>*/}
-        </header>
         <div className="Styleguide-main container">
-          <h1>Styleguide</h1>
+          <header>
+            <h1>Styleguide</h1>
+          </header>
           <div className="Styleguide-content row">
             <div className="Styleguide-nav col-xs">
               <ul>
