@@ -27,22 +27,22 @@ export default function Header(props) {
   const unseenNotifications = Object.values(events.events).reduce((unseen, e) =>
     e.seen ? unseen : unseen + 1, 0);
   const main = (
-    <nav className="MainHeader navbar">
-      <div className="MainHeader-brand navbar-brand">
+    <div className="MainHeader clearfix">
+      <div className="MainHeader-brand">
         <Link to="/">
-          <img
-            src="../assets/logo/logo.svg"
-            alt="linode logo"
-            height={40}
-            width={35}
-          />
+          <span className="MainHeader-logo">
+            <img
+              src={logoOnly}
+              alt="linode logo"
+              height={40}
+              width={35}
+            />
+          </span>
           <span className="MainHeader-title">Linode Manager</span>
         </Link>
       </div>
-      <div className="MainHeader-search form-inline float-xs-left" role="search">
-        <div className="form-group">
-          <input placeholder="Search..." type="text" />
-        </div>
+      <div className="MainHeader-search">
+        <input placeholder="Search..." />
       </div>
       {!username ? null :
         <div
@@ -63,7 +63,7 @@ export default function Header(props) {
             <span className="MainHeader-badge">{unseenNotifications}</span>}
         </div>
       }
-    </nav>
+    </div>
   );
 
   return (
