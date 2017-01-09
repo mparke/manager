@@ -1,11 +1,15 @@
 import React, { PropTypes } from 'react';
 
+import { hideModal } from '~/actions/modal';
+
 export default function ModalShell(props) {
-  const { title, body, open } = props;
+  console.log('props: ', props);
+  const { title, body, open, dispatch } = props;
+  const close = () => dispatch(hideModal());
   return (
     <div
       className={`modal-overlay ${open ? 'open' : ''}`}
-      onClick={props.close}
+      onClick={close}
     >
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <header className="modal-header">
@@ -21,6 +25,8 @@ ModalShell.propTypes = {
   title: PropTypes.string,
   body: PropTypes.node,
   open: PropTypes.bool.isRequired,
+
+  dispatch: PropTypes.func.isRequired,
 };
 
 ModalShell.defaultProps = {
