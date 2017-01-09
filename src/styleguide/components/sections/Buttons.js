@@ -1,15 +1,12 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 import Section from '~/styleguide/components/Section';
 
-export default function Buttons(props) {
+export default function Buttons() {
+
   return (
     <Section name="buttons" title="Buttons">
       <p></p>
     </Section>
   );
 }
-
-Buttons.propTypes = {
-
-};
