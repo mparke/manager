@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+
 import { hideModal } from '~/actions/modal';
 
 export default function ModalShell(props) {
@@ -24,6 +25,7 @@ ModalShell.propTypes = {
   title: PropTypes.string,
   body: PropTypes.node,
   open: PropTypes.bool.isRequired,
+
   dispatch: PropTypes.func.isRequired,
 };
 

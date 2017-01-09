@@ -215,7 +215,12 @@ export class Layout extends Component {
           submitFeedback={() => {}}
         />
         <div className="main full-height">
-          <ModalShell />
+          <ModalShell
+            open={this.props.modal.open}
+            title={this.props.modal.title}
+            body={this.props.modal.body}
+            close={() => dispatch(hideModal())}
+          />
           <div className="main-inner">
             {!errors.status ?
               this.props.children :
