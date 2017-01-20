@@ -1,17 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { FormGroup } from '~/components/form';
-import { ErrorSummary, reduceErrors } from '~/errors';
 import { linodes } from '~/api';
 import { cancelBackup } from '~/api/backups';
 import { Card } from '~/components';
 import { ConfirmModalBody } from '~/components/modals';
-import { Form, SubmitButton } from '~/components/form';
+import { Form, FormGroup, FormGroupError, SubmitButton, Select } from '~/components/form';
+import { ErrorSummary, reduceErrors } from '~/errors';
 import { getLinode } from '~/linodes/linode/layouts/IndexPage';
 import { setSource } from '~/actions/source';
 import { showModal, hideModal } from '~/actions/modal';
-
+import ConfirmModalBody from '~/components/modals/ConfirmModalBody';
 
 export class SettingsPage extends Component {
   constructor(props) {
@@ -30,6 +29,9 @@ export class SettingsPage extends Component {
     const { dispatch } = this.props;
     const linode = this.getLinode();
     const { day, window } = this.state;
+
+    this.setState({ loading: true, errors: {} });
+
     try {
       await dispatch(linodes.put({
         backups: {
@@ -40,6 +42,8 @@ export class SettingsPage extends Component {
       const errors = await reduceErrors(response);
       this.setState({ errors });
     }
+
+    this.setState({ loading: false });
   }
 
   render() {
@@ -51,15 +55,15 @@ export class SettingsPage extends Component {
       <div>
         <Card title="Schedule">
           <Form onSubmit={() => this.saveChanges()}>
-            <FormGroup name="window" errors={errors} className="row">
-              <div className="label-col col-sm-2">
+
+            <FormGroup errors={errors} className="row" name="window">
+              <div className="col-sm-2 label-col">
                 <label htmlFor="window">Time of day (EST):</label>
               </div>
-              <div className="col-sm-4">
-                <select
-                  className="form-control"
-                  id="window"
+              <div className="col-sm-10">
+                <Select
                   name="window"
+                  id="window"
                   value={window}
                   onChange={e => this.setState({ window: e.target.value })}
                 >
@@ -75,16 +79,16 @@ export class SettingsPage extends Component {
                   <option value="W18">6-8 PM</option>
                   <option value="W20">8-10 PM</option>
                   <option value="W22">10-12 PM</option>
-                </select>
+                </Select>
+                <FormGroupError errors={errors} name="window" />
               </div>
             </FormGroup>
-            <FormGroup name="day" errors={errors} className="row">
-              <div className="label-col col-sm-2">
+            <FormGroup errors={errors} className="row" name="day">
+              <div className="col-sm-2 label-col">
                 <label htmlFor="day">Day of week:</label>
               </div>
-              <div className="col-sm-4">
-                <select
-                  className="form-control"
+              <div className="col-sm-10">
+                <Select
                   id="day"
                   name="day"
                   value={day}
@@ -97,15 +101,16 @@ export class SettingsPage extends Component {
                   <option value="Thursday">Thursday</option>
                   <option value="Friday">Friday</option>
                   <option value="Saturday">Saturday</option>
-                </select>
+                </Select>
+                <FormGroupError errors={errors} name="window" />
               </div>
             </FormGroup>
             <ErrorSummary errors={errors} />
-            <FormGroup className="row">
+            <div className="row">
               <div className="offset-sm-2 col-sm-10">
                 <SubmitButton />
               </div>
-            </FormGroup>
+            </div>
           </Form>
         </Card>
         <Card title="Cancel backup service">
