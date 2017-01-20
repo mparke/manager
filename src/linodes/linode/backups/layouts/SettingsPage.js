@@ -1,15 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { FormGroup } from '~/components/form';
-import { ErrorSummary, reduceErrors } from '~/errors';
 import { linodes } from '~/api';
 import { cancelBackup } from '~/api/backups';
-import { Form, SubmitButton } from '~/components/form';
+import { Form, FormGroup, FormGroupError, SubmitButton, Select } from '~/components/form';
+import { ErrorSummary, reduceErrors } from '~/errors';
 import { getLinode } from '~/linodes/linode/layouts/IndexPage';
 import { setSource } from '~/actions/source';
 import { showModal, hideModal } from '~/actions/modal';
-import { Button } from '~/components/buttons';
 import ConfirmModalBody from '~/components/modals/ConfirmModalBody';
 
 export class CancelBackupsModal extends Component {
@@ -61,6 +59,9 @@ export class SettingsPage extends Component {
     const { dispatch } = this.props;
     const linode = this.getLinode();
     const { day, window } = this.state;
+
+    this.setState({ loading: true, errors: {} });
+
     try {
       await dispatch(linodes.put({
         backups: {
@@ -71,6 +72,8 @@ export class SettingsPage extends Component {
       const errors = await reduceErrors(response);
       this.setState({ errors });
     }
+
+    this.setState({ loading: false });
   }
 
   render() {
@@ -90,13 +93,11 @@ export class SettingsPage extends Component {
           </header>
           <Form onSubmit={() => this.saveChanges()}>
             <FormGroup errors={errors} className="row" name="window">
-              <div className="col-sm-2">
+              <div className="col-sm-2 label-col">
                 <label htmlFor="window">Time of day (EST):</label>
               </div>
-              <div className="col-sm-4">
-                <select
-                  className="form-control"
-                  name="window"
+              <div className="col-sm-10">
+                <Select
                   value={window}
                   onChange={e => this.setState({ window: e.target.value })}
                 >
@@ -112,17 +113,16 @@ export class SettingsPage extends Component {
                   <option value="W18">6-8 PM</option>
                   <option value="W20">8-10 PM</option>
                   <option value="W22">10-12 PM</option>
-                </select>
+                </Select>
+                <FormGroupError errors={errors} name="window" />
               </div>
             </FormGroup>
             <FormGroup errors={errors} className="row" name="day">
-              <div className="col-sm-2">
+              <div className="col-sm-2 label-col">
                 <label htmlFor="day">Day of week:</label>
               </div>
-              <div className="col-sm-4">
-                <select
-                  className="form-control"
-                  name="day"
+              <div className="col-sm-10">
+                <Select
                   value={day}
                   onChange={e => this.setState({ day: e.target.value })}
                 >
@@ -133,11 +133,16 @@ export class SettingsPage extends Component {
                   <option value="Thursday">Thursday</option>
                   <option value="Friday">Friday</option>
                   <option value="Saturday">Saturday</option>
-                </select>
+                </Select>
+                <FormGroupError errors={errors} name="window" />
               </div>
             </FormGroup>
             <ErrorSummary errors={errors} />
-            <SubmitButton />
+            <div className="row">
+              <div className="col-sm-2 offset-sm-2">
+                <SubmitButton />
+              </div>
+            </div>
           </Form>
         </section>
         <section className="card">
@@ -145,12 +150,12 @@ export class SettingsPage extends Component {
             <h2>Cancel backup service</h2>
           </header>
           <p>This will remove all existing backups.</p>
-          <Button
-            className="LinodesLinodeBackupsSettings-cancel"
+          <button
+            className="btn btn-delete btn-default"
             onClick={() => dispatch(showModal('Cancel backup service', cancelModal(linode.id)))}
           >
             Cancel backup service
-          </Button>
+          </button>
         </section>
       </div>
     );
