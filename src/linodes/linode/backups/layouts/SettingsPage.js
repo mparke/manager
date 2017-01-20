@@ -10,7 +10,6 @@ import { ErrorSummary, reduceErrors } from '~/errors';
 import { getLinode } from '~/linodes/linode/layouts/IndexPage';
 import { setSource } from '~/actions/source';
 import { showModal, hideModal } from '~/actions/modal';
-import ConfirmModalBody from '~/components/modals/ConfirmModalBody';
 
 export class SettingsPage extends Component {
   constructor(props) {
