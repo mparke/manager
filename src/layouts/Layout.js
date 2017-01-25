@@ -98,9 +98,37 @@ export class Layout extends Component {
     return event;
   }
 
+  sortEvents(eventsDict) {
+    const events = Object.values(eventsDict.events);
+    if (!events.length) {
+      return [];
+    }
+
+    // TODO: address with request filter
+    return events.reverse();
+  }
+
   async fetchEventsPage(page = 0, processedEvents = { events: [] }) {
     const { dispatch } = this.props;
-    const nextProcessedEvents = await dispatch(events.page(page, [], this.eventHandler, false));
+
+    // filter by most recently updated
+    const sortedEvents = this.sortEvents(this.props.events);
+    let headers = null;
+    if (sortedEvents.length) {
+      headers = {
+        'X-Filter': JSON.stringify({
+          // TODO: look at updated
+          created: {
+            '+gt': sortedEvents[0].created
+          }
+        }),
+      };
+    }
+
+    const nextProcessedEvents = await dispatch(events.page(page, [], this.eventHandler, false, null, {
+      headers: headers
+    }));
+
     // If all the events are new, we want to fetch another page.
     const allUnseen = nextProcessedEvents.events.reduce((allUnseenEvents, { seen }) =>
       !seen && allUnseenEvents, true) && nextProcessedEvents.events.length;
@@ -220,7 +248,7 @@ export class Layout extends Component {
               await dispatch(eventRead(event.id));
             }
           }}
-          events={this.props.events}
+          events={this.sortEvents(this.props.events)}
           eventSeen={(id) => dispatch(eventSeen(id))}
         />
         <Feedback

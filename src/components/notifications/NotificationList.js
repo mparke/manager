@@ -3,29 +3,18 @@ import { Link } from 'react-router';
 
 import NotificationListItem from './NotificationListItem';
 
-export function sortNotifications(eventsDict) {
-  const events = Object.values(eventsDict.events);
-  if (!events.length) {
-    return [];
-  }
-
-  // TODO: address with request filter
-  return events.reverse();
-}
 
 export default class NotificationList extends Component {
   componentWillUpdate(nextProps) {
     const { open, events, eventSeen } = nextProps;
-    const sortedEvents = sortNotifications(events);
 
-    if (open && sortedEvents[0] && !sortedEvents[0].seen) {
-      eventSeen(sortedEvents[0].id);
+    if (open && events[0] && !events[0].seen) {
+      eventSeen(events[0].id);
     }
   }
 
   render() {
     const { events, open, onClickItem } = this.props;
-    const sortedEvents = sortNotifications(events);
 
     return (
       <div className={`NotificationList ${open ? 'NotificationList--open' : ''}`}>
@@ -34,7 +23,7 @@ export default class NotificationList extends Component {
             <Link to="/logout">Logout</Link>
           </header>
           <div>
-            {sortedEvents.map((event, index) =>
+            {events.map((event, index) =>
               <NotificationListItem
                 key={index}
                 onClick={onClickItem}
@@ -51,7 +40,7 @@ export default class NotificationList extends Component {
 }
 
 NotificationList.propTypes = {
-  events: PropTypes.object.isRequired,
+  events: PropTypes.array.isRequired,
   open: PropTypes.bool.isRequired,
   onClickItem: PropTypes.func.isRequired,
 };
