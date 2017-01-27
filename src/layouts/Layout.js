@@ -10,7 +10,7 @@ import { actions as eventsActions } from '~/api/configs/events';
 import { eventRead, eventSeen } from '~/api/events';
 import Header from '~/components/Header';
 import Sidebar from '~/components/Sidebar';
-import { NotificationList } from '~/components/notifications';
+import { NotificationList, sortEvents } from '~/components/notifications';
 import { ModalShell } from '~/components/modals';
 import Error from '~/components/Error';
 import Feedback from '~/components/Feedback';
@@ -98,37 +98,28 @@ export class Layout extends Component {
     return event;
   }
 
-  sortEvents(eventsDict) {
-    const events = Object.values(eventsDict.events);
-    if (!events.length) {
-      return [];
-    }
-
-    // TODO: address with request filter
-    return events.reverse();
-  }
-
   async fetchEventsPage(page = 0, processedEvents = { events: [] }) {
     const { dispatch } = this.props;
 
     // filter by most recently updated
-    const sortedEvents = this.sortEvents(this.props.events);
+    const sortedEvents = sortEvents(this.props.events);
     let headers = null;
     if (sortedEvents.length) {
       headers = {
         'X-Filter': JSON.stringify({
           // TODO: look at updated
           updated: {
-            '+gt': sortedEvents[0].updated
-          }
+            '+gt': sortedEvents[0].updated,
+          },
         }),
       };
     }
 
-    const nextProcessedEvents = await dispatch(events.page(page, [], this.eventHandler, false, null, {
-      headers: headers
-    }));
-    console.log(nextProcessedEvents);
+    const nextProcessedEvents = await dispatch(
+      events.page(page, [], this.eventHandler, false, null, {
+        headers,
+      })
+    );
 
     // If all the events are new, we want to fetch another page.
     const allUnseen = nextProcessedEvents.events.reduce((allUnseenEvents, { seen }) =>
@@ -249,7 +240,7 @@ export class Layout extends Component {
               await dispatch(eventRead(event.id));
             }
           }}
-          events={this.sortEvents(this.props.events)}
+          events={sortEvents(this.props.events)}
           eventSeen={(id) => dispatch(eventSeen(id))}
         />
         <Feedback
