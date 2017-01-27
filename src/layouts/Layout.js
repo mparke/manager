@@ -118,8 +118,8 @@ export class Layout extends Component {
       headers = {
         'X-Filter': JSON.stringify({
           // TODO: look at updated
-          created: {
-            '+gt': sortedEvents[0].created
+          updated: {
+            '+gt': sortedEvents[0].updated
           }
         }),
       };
@@ -128,6 +128,7 @@ export class Layout extends Component {
     const nextProcessedEvents = await dispatch(events.page(page, [], this.eventHandler, false, null, {
       headers: headers
     }));
+    console.log(nextProcessedEvents);
 
     // If all the events are new, we want to fetch another page.
     const allUnseen = nextProcessedEvents.events.reduce((allUnseenEvents, { seen }) =>
