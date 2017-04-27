@@ -1,41 +1,46 @@
 import React from 'react';
 import { Route, IndexRedirect } from 'react-router';
+import _ from 'lodash';
 
 import {
   Endpoint,
   EndpointIndex
 } from '~/components';
 
+
 export function generateIndexRoute(props) {
-  const { endpointConfig, key } = props;
-  const { endpoint } = endpointConfig;
+  const { endpoint, key } = props;
 
   return (
     <Route
       key={key}
       component={EndpointIndex}
-      endpointConfig={endpointConfig}
-      path={endpoint.basePath}
+      endpoint={endpoint}
+      path={endpoint.path}
     />
   );
 }
 
 export function generateChildRoute(props) {
-  const { endpointConfig } = props;
-  const { endpoint } = endpointConfig;
+  const { endpoint } = props;
 
   let childEndpoints = null;
-  if (endpoint.endpoints) {
-    childEndpoints = endpoint.endpoints.map(function(childEndpoint, index) {
+  if (endpoint.formattedEndpoints) {
+    childEndpoints = endpoint.formattedEndpoints.map(function(childEndpoint, index) {
+      if (childEndpoint.formattedEndpoints && childEndpoint.formattedEndpoints.length) {
+        return generateChildRoute({ endpoint: childEndpoint });
+      }
+
       return (
         <Route
           key={index}
           component={Endpoint}
           endpoint={childEndpoint}
-          path={childEndpoint.routePath}
+          path={childEndpoint.path}
         />
       );
     });
+    childEndpoints = _.flatten(childEndpoints);
   }
 
   return childEndpoints;

@@ -11,13 +11,13 @@ import { default as Method } from './Method';
 export default function Endpoint(props) {
   const { route } = props;
   const { endpoint } = route;
-  const { crumbs, description, methods, path, resourceObject } = endpoint;
-
+  const { crumbs, description, methods, path, resource } = endpoint;
+  debugger;
   return (
     <div className="Endpoint">
       <div className="Endpoint-header">
         <div className="Endpoint-breadcrumbsContainer">
-          <Breadcrumbs crumbs={crumbs} />
+          <Breadcrumbs crumbs={[]} />
         </div>
         <div className="Endpoint-title">
           <h1>{path}</h1>
