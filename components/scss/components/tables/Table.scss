@@ -1,15 +1,11 @@
 .Table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
     width: 100%;
 
-    th:first-of-type,
-    td:first-of-type {
-        padding-left: 15px;
-    }
-
-    th:last-of-type,
-    td:last-of-type {
-        text-align: right;
-        padding-right: 15px;
+    th, td {
+        padding: 5px 10px;
     }
 
     thead, th {
