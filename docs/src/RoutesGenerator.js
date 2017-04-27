@@ -7,32 +7,30 @@ import {
 } from '~/components';
 
 export function generateIndexRoute(props) {
-  const { endpointConfig, key } = props;
-  const { endpoint } = endpointConfig;
+  const { endpoint, key } = props;
 
   return (
     <Route
       key={key}
       component={EndpointIndex}
-      endpointConfig={endpointConfig}
-      path={endpoint.basePath}
+      endpoint={endpoint}
+      path={endpoint.path}
     />
   );
 }
 
 export function generateChildRoute(props) {
-  const { endpointConfig } = props;
-  const { endpoint } = endpointConfig;
+  const { endpoint } = props;
 
   let childEndpoints = null;
-  if (endpoint.endpoints) {
-    childEndpoints = endpoint.endpoints.map(function(childEndpoint, index) {
+  if (endpoint.formattedEndpoints) {
+    childEndpoints = endpoint.formattedEndpoints.map(function(childEndpoint, index) {
       return (
         <Route
           key={index}
           component={Endpoint}
           endpoint={childEndpoint}
-          path={childEndpoint.routePath}
+          path={childEndpoint.path}
         />
       );
     });
