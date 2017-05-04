@@ -67,6 +67,7 @@ function formatMethodResource(endpoint, method) {
       if (schema) {
         resourceObject.schema = Object.keys(schema).map(function(schemaName) {
           const schemaField = schema[schemaName];
+          console.log(schemaField);
           return {
             name: schemaName,
             description: schemaField._description,
