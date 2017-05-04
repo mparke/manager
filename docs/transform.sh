@@ -11,7 +11,6 @@ convertToJSON() {
       filename=$(echo $i | sed 's/\.yaml$//')
       any-json -format=yaml /tmp/dev_docs_$TEMPDIR/_data/$folder/$i > "$filename.json"
       done
-  #rename 's/\.yaml$/.json/' *.yaml
   cd ../../..
 }
 
