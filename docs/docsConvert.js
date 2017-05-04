@@ -67,10 +67,12 @@ function formatMethodResource(endpoint, method) {
       if (schema) {
         resourceObject.schema = Object.keys(schema).map(function(schemaName) {
           const schemaField = schema[schemaName];
+          const description = !!schemaField._description ? schemaField._description : schemaField.description;
+          console.log('description', description);
           console.log(schemaField);
           return {
             name: schemaName,
-            description: schemaField._description,
+            description: description,
             editable: schemaField._editable,
             type: schemaField._type,
             value: schemaField._value
