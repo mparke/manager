@@ -73,9 +73,7 @@ module.exports = { endpoints: [
                       "type": "boolean",
                       "value": true
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               }
             ],
@@ -126,9 +124,7 @@ module.exports = { endpoints: [
                     {
                       "name": "6"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               }
             ],
@@ -224,9 +220,7 @@ module.exports = { endpoints: [
                       "type": "boolean",
                       "value": true
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               }
             ],
@@ -286,9 +280,7 @@ module.exports = { endpoints: [
                     {
                       "name": "9"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               }
             ],
@@ -350,9 +342,9 @@ module.exports = { endpoints: [
                       "value": "2015-09-29T11:21:01"
                     },
                     {
-                      "name": "datacenter",
-                      "description": "This Linode's datacenter.",
-                      "type": "datacenter"
+                      "name": "region",
+                      "description": "This Linode's region.",
+                      "type": "region"
                     },
                     {
                       "name": "distribution",
@@ -398,7 +390,7 @@ module.exports = { endpoints: [
                         {
                           "id": {
                             "_type": "string",
-                            "_value": "standard-1"
+                            "_value": "g5-standard-1"
                           },
                           "backups_price": {
                             "_type": "integer",
@@ -486,7 +478,7 @@ module.exports = { endpoints: [
                       "rebooting": "The Linode is rebooting.",
                       "provisioning": "The Linode is being created.",
                       "deleting": "The Linode is being deleted.",
-                      "migrating": "The Linode is being migrated to a new host/datacenter.",
+                      "migrating": "The Linode is being migrated to a new host/region.",
                       "name": "Status"
                     },
                     {
@@ -523,9 +515,7 @@ module.exports = { endpoints: [
                       "xen": "Xen",
                       "name": "Hypervisor"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               },
               {
@@ -691,7 +681,7 @@ module.exports = { endpoints: [
                       "rebooting": "The Linode is rebooting.",
                       "provisioning": "The Linode is being created.",
                       "deleting": "The Linode is being deleted.",
-                      "migrating": "The Linode is being migrated to a new host/datacenter.",
+                      "migrating": "The Linode is being migrated to a new host/region.",
                       "name": "0"
                     },
                     {
@@ -728,9 +718,7 @@ module.exports = { endpoints: [
                       "xen": "Xen",
                       "name": "4"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               },
               {
@@ -848,7 +836,7 @@ module.exports = { endpoints: [
                       "rebooting": "The Linode is rebooting.",
                       "provisioning": "The Linode is being created.",
                       "deleting": "The Linode is being deleted.",
-                      "migrating": "The Linode is being migrated to a new host/datacenter.",
+                      "migrating": "The Linode is being migrated to a new host/region.",
                       "name": "0"
                     },
                     {
@@ -885,9 +873,7 @@ module.exports = { endpoints: [
                       "xen": "Xen",
                       "name": "4"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               },
               {
@@ -1053,9 +1039,7 @@ module.exports = { endpoints: [
                       "initrd": "initrd (uncompressed initrd, ext2, max 32 MB)",
                       "name": "Filesystem"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               },
               {
@@ -1743,9 +1727,7 @@ module.exports = { endpoints: [
                       "private": "Internal IP Addresses (192.168 range)",
                       "name": "IPAddressType"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               },
               {
@@ -2090,9 +2072,7 @@ module.exports = { endpoints: [
                         }
                       ]
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               },
               {
@@ -2213,9 +2193,7 @@ module.exports = { endpoints: [
                     {
                       "name": "13"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               },
               {
@@ -2286,7 +2264,122 @@ module.exports = { endpoints: [
                     "value": "import linode\nTODO\n"
                   }
                 ],
-                "name": "GET"
+                "name": "GET",
+                "resource": {
+                  "name": "Domains",
+                  "prefix": "domain",
+                  "description": "Domains\n",
+                  "schema": [
+                    {
+                      "name": "id",
+                      "type": "integer",
+                      "value": 357
+                    },
+                    {
+                      "name": "domain",
+                      "description": "The Domain name.\n",
+                      "editable": true,
+                      "type": "string",
+                      "value": "example.com"
+                    },
+                    {
+                      "name": "soa_email",
+                      "description": "Start of Authority (SOA) contact email.\n",
+                      "editable": true,
+                      "type": "string",
+                      "value": "admin@example.com"
+                    },
+                    {
+                      "name": "description",
+                      "description": "A description to keep track of this Domain.\n",
+                      "editable": true,
+                      "type": "string",
+                      "value": "Example Description"
+                    },
+                    {
+                      "name": "refresh_sec",
+                      "description": "Time interval before the Domain should be refreshed, in seconds.\n",
+                      "editable": true,
+                      "type": "integer",
+                      "value": 14400
+                    },
+                    {
+                      "name": "retry_sec",
+                      "description": "Time interval that should elapse before a failed refresh should be retried, in seconds.\n",
+                      "editable": true,
+                      "type": "integer",
+                      "value": 3600
+                    },
+                    {
+                      "name": "expire_sec",
+                      "description": "Time value that specifies the upper limit on the time interval that can elapse before the Domain is no longer authoritative, in seconds.\n",
+                      "editable": true,
+                      "type": "integer",
+                      "value": 604800
+                    },
+                    {
+                      "name": "ttl_sec",
+                      "description": "Time interval that the resource record may be cached before\n  it should be discarded, in seconds.\n",
+                      "editable": true,
+                      "type": "integer",
+                      "value": 3600
+                    },
+                    {
+                      "name": "status",
+                      "description": "The status of the Domain it can be disabled, active, or edit_mode.\n",
+                      "editable": true,
+                      "type": "enum",
+                      "value": "active"
+                    },
+                    {
+                      "name": "master_ips",
+                      "description": "An array of IP addresses for this Domain.\n",
+                      "editable": true,
+                      "type": "array",
+                      "value": [
+                        "127.0.0.1",
+                        "255.255.255.1",
+                        "123.123.123.7"
+                      ]
+                    },
+                    {
+                      "name": "axfr_ips",
+                      "description": "An array of IP addresses allowed to AXFR the entire Domain.\n",
+                      "editable": true,
+                      "type": "array",
+                      "value": [
+                        "44.55.66.77"
+                      ]
+                    },
+                    {
+                      "name": "display_group",
+                      "description": "A display group to keep track of this Domain.\n",
+                      "editable": true,
+                      "type": "string",
+                      "value": "Example Display Group"
+                    },
+                    {
+                      "name": "type",
+                      "description": "Controls the Domain type.",
+                      "editable": false,
+                      "type": "enum",
+                      "value": "master"
+                    }
+                  ],
+                  "enums": [
+                    {
+                      "active": "Turn on serving of this Domain.",
+                      "disabled": "Turn off serving of this Domain.",
+                      "edit_mode": "Use this mode while making edits.",
+                      "name": "status"
+                    },
+                    {
+                      "master": "A primary, authoritative Domain",
+                      "slave": "A secondary Domain which gets its updates from a master Domain.",
+                      "name": "domain_type"
+                    }
+                  ]
+                }
               },
               {
                 "oauth": "domains:create",
@@ -2384,7 +2477,66 @@ module.exports = { endpoints: [
                     "value": "import linode\nTODO\n"
                   }
                 ],
-                "name": "GET"
+                "name": "GET",
+                "resource": {
+                  "name": "Domains",
+                  "prefix": "domain",
+                  "description": "Domains\n",
+                  "schema": [
+                    {
+                      "name": "0"
+                    },
+                    {
+                      "name": "1"
+                    },
+                    {
+                      "name": "2"
+                    },
+                    {
+                      "name": "3"
+                    },
+                    {
+                      "name": "4"
+                    },
+                    {
+                      "name": "5"
+                    },
+                    {
+                      "name": "6"
+                    },
+                    {
+                      "name": "7"
+                    },
+                    {
+                      "name": "8"
+                    },
+                    {
+                      "name": "9"
+                    },
+                    {
+                      "name": "10"
+                    },
+                    {
+                      "name": "11"
+                    },
+                    {
+                      "name": "12"
+                    }
+                  ],
+                  "enums": [
+                    {
+                      "active": "Turn on serving of this Domain.",
+                      "disabled": "Turn off serving of this Domain.",
+                      "edit_mode": "Use this mode while making edits.",
+                      "name": "0"
+                    },
+                    {
+                      "master": "A primary, authoritative Domain",
+                      "slave": "A secondary Domain which gets its updates from a master Domain.",
+                      "name": "1"
+                    }
+                  ]
+                }
               },
               {
                 "oauth": "domains:modify",
@@ -2440,7 +2592,93 @@ module.exports = { endpoints: [
                     "value": "import linode\nTODO\n"
                   }
                 ],
-                "name": "GET"
+                "name": "GET",
+                "resource": {
+                  "name": "Domain Records",
+                  "prefix": "zrcd",
+                  "description": "Domain Records: The Domain Record fields will contain different values depending on what type of record it is.\n",
+                  "schema": [
+                    {
+                      "name": "id",
+                      "type": "integer",
+                      "value": 468
+                    },
+                    {
+                      "name": "type",
+                      "description": "Type of record (A/AAAA, NS, MX, CNAME, TXT, SRV).\n",
+                      "type": "string",
+                      "value": "A"
+                    },
+                    {
+                      "name": "name",
+                      "description": "The hostname or FQDN. When type=MX the subdomain to delegate to the Target MX server.\n",
+                      "editable": true,
+                      "type": "string",
+                      "value": "sub.example.com"
+                    },
+                    {
+                      "name": "target",
+                      "description": "When type=MX the hostname. When type=CNAME the target of the alias. When type=TXT the value of the record. When type=A or AAAA the token of '[remote_addr]' will be substituted with the IP address of the request.\n",
+                      "editable": true,
+                      "type": "string",
+                      "value": "sub"
+                    },
+                    {
+                      "name": "priority",
+                      "description": "Priority for MX and SRV records.\n",
+                      "editable": true,
+                      "type": "integer",
+                      "value": 10
+                    },
+                    {
+                      "name": "weight",
+                      "description": "A relative weight for records with the same priority, higher value means more preferred.\n",
+                      "editable": true,
+                      "type": "integer",
+                      "value": 20
+                    },
+                    {
+                      "name": "port",
+                      "description": "The TCP or UDP port on which the service is to be found.\n",
+                      "editable": true,
+                      "type": "integer",
+                      "value": 80
+                    },
+                    {
+                      "name": "service",
+                      "description": "The service to append to an SRV record. Must conform to RFC2782 standards.\n",
+                      "editable": true,
+                      "type": "string",
+                      "value": "_sip"
+                    },
+                    {
+                      "name": "protocol",
+                      "description": "The protocol to append to an SRV record. Must conform to RFC2782 standards.\n",
+                      "editable": true,
+                      "type": "string",
+                      "value": "_tcp"
+                    },
+                    {
+                      "name": "ttl_sec",
+                      "description": "Time interval that the resource record may be cached before it should be discarded, in seconds. Leave as 0 to accept our default.\n",
+                      "editable": true,
+                      "type": "integer",
+                      "value": 86400
+                    }
+                  ],
+                  "enums": [
+                    {
+                      "A": "Address Mapping Record",
+                      "AAAA": "IP Version 6 Address Record",
+                      "NS": "Name Server Record",
+                      "MX": "Mail Exchanger Record",
+                      "CNAME": "Canonical Name Record",
+                      "TXT": "Text Record",
+                      "SRV": "Service Record",
+                      "name": "Zone Record Types"
+                    }
+                  ]
+                }
               },
               {
                 "oauth": "domains:create",
@@ -2525,7 +2763,56 @@ module.exports = { endpoints: [
                     "value": "import linode\nTODO\n"
                   }
                 ],
-                "name": "GET"
+                "name": "GET",
+                "resource": {
+                  "name": "Domain Records",
+                  "prefix": "zrcd",
+                  "description": "Domain Records: The Domain Record fields will contain different values depending on what type of record it is.\n",
+                  "schema": [
+                    {
+                      "name": "0"
+                    },
+                    {
+                      "name": "1"
+                    },
+                    {
+                      "name": "2"
+                    },
+                    {
+                      "name": "3"
+                    },
+                    {
+                      "name": "4"
+                    },
+                    {
+                      "name": "5"
+                    },
+                    {
+                      "name": "6"
+                    },
+                    {
+                      "name": "7"
+                    },
+                    {
+                      "name": "8"
+                    },
+                    {
+                      "name": "9"
+                    }
+                  ],
+                  "enums": [
+                    {
+                      "A": "Address Mapping Record",
+                      "AAAA": "IP Version 6 Address Record",
+                      "NS": "Name Server Record",
+                      "MX": "Mail Exchanger Record",
+                      "CNAME": "Canonical Name Record",
+                      "TXT": "Text Record",
+                      "SRV": "Service Record",
+                      "name": "0"
+                    }
+                  ]
+                }
               },
               {
                 "oauth": "domains:modify",
@@ -2592,7 +2879,41 @@ module.exports = { endpoints: [
                     "value": "curl -H \"Authorization: token $TOKEN\" \\\n    https://$api_root/$version/nodebalancers\n"
                   }
                 ],
-                "name": "GET"
+                "name": "GET",
+                "resource": {
+                  "name": "NodeBalancer",
+                  "prefix": "lnde",
+                  "description": "NodeBalancer objects describe a single NodeBalancer on your account.\n",
+                  "schema": [
+                    {
+                      "name": "id",
+                      "description": "An integer.",
+                      "type": "integer",
+                      "value": 123456
+                    },
+                    {
+                      "name": "label",
+                      "description": "The NodeBalancer's display label. Must be 3-32 ASCII characters limited to letters, numbers, underscores, and dashes, starting and ending with a letter, and without two dashes or underscores in a row.",
+                      "editable": true,
+                      "type": "string",
+                      "value": "nodebalancer12345"
+                    },
+                    {
+                      "name": "hostname",
+                      "description": "The NodeBalancer's hostname.",
+                      "editable": false,
+                      "type": "string",
+                      "value": "nb-69-164-223-4.us-east-1a.nodebalancer.linode.com"
+                    },
+                    {
+                      "name": "client_conn_throttle",
+                      "description": "Throttle connections per second. 0 to disable, max of 20.",
+                      "editable": true,
+                      "type": "integer",
+                      "value": 10
+                    }
+                  ]
+                }
               },
               {
                 "money": true,
@@ -2643,7 +2964,26 @@ module.exports = { endpoints: [
                     "value": "curl -H \"Authorization: token $TOKEN\" \\\n    https://$api_root/$version/nodebalancers/$nodebalancer_id\n"
                   }
                 ],
-                "name": "GET"
+                "name": "GET",
+                "resource": {
+                  "name": "NodeBalancer",
+                  "prefix": "lnde",
+                  "description": "NodeBalancer objects describe a single NodeBalancer on your account.\n",
+                  "schema": [
+                    {
+                      "name": "0"
+                    },
+                    {
+                      "name": "1"
+                    },
+                    {
+                      "name": "2"
+                    },
+                    {
+                      "name": "3"
+                    }
+                  ]
+                }
               },
               {
                 "oauth": "nodebalancers:modify",
@@ -3201,24 +3541,6 @@ module.exports = { endpoints: [
                       "value": "open"
                     },
                     {
-                      "name": "dnszone_id",
-                      "description": "The DNS zone this ticket is regarding, or null.",
-                      "type": "integer",
-                      "value": 456
-                    },
-                    {
-                      "name": "linode_id",
-                      "description": "The Linode this ticket is regarding, or null.",
-                      "type": "integer",
-                      "value": 789
-                    },
-                    {
-                      "name": "nodebalancer_id",
-                      "description": "The NodeBalancer this ticket is regarding, or null.",
-                      "type": "integer",
-                      "value": 123
-                    },
-                    {
                       "name": "opened",
                       "type": "datetime",
                       "value": "2017-02-23T11:21:01"
@@ -3244,6 +3566,10 @@ module.exports = { endpoints: [
                       "description": "The user who last updated this ticket.",
                       "type": "string",
                       "value": "some_other_user"
+                    },
+                    {
+                      "name": "entity",
+                      "description": "The entity this ticket was opened regarding"
                     }
                   ],
                   "enums": [
@@ -3253,9 +3579,7 @@ module.exports = { endpoints: [
                       "closed": "The support ticket is completed and closed.",
                       "name": "Status"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               },
               {
@@ -3352,12 +3676,6 @@ module.exports = { endpoints: [
                     },
                     {
                       "name": "9"
-                    },
-                    {
-                      "name": "10"
-                    },
-                    {
-                      "name": "11"
                     }
                   ],
                   "enums": [
@@ -3367,9 +3685,7 @@ module.exports = { endpoints: [
                       "closed": "The support ticket is completed and closed.",
                       "name": "0"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               }
             ],
@@ -3420,9 +3736,7 @@ module.exports = { endpoints: [
                       "type": "string",
                       "value": "some_other_user"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               },
               {
@@ -3576,9 +3890,7 @@ module.exports = { endpoints: [
                       "disabled": "Disable Lish",
                       "name": "LishSetting"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               },
               {
@@ -3756,9 +4068,7 @@ module.exports = { endpoints: [
                       "personal_access_token": "A token created through the API for use without a client application.",
                       "name": "OAuthTokenType"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               },
               {
@@ -3851,9 +4161,7 @@ module.exports = { endpoints: [
                       "personal_access_token": "A token created through the API for use without a client application.",
                       "name": "0"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               },
               {
@@ -3936,9 +4244,7 @@ module.exports = { endpoints: [
                       "disabled": "Disable Lish",
                       "name": "0"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               },
               {
@@ -4149,9 +4455,7 @@ module.exports = { endpoints: [
                       "disabled": "Disable Lish",
                       "name": "0"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               },
               {
@@ -4244,9 +4548,7 @@ module.exports = { endpoints: [
                       "disabled": "Disable Lish",
                       "name": "0"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               },
               {
@@ -4385,13 +4687,11 @@ module.exports = { endpoints: [
                       ]
                     },
                     {
-                      "name": "dnszone",
-                      "description": "Individual grants to a DNS Zone you own.  Grants include all, access and delete",
+                      "name": "domain",
+                      "description": "Individual grants to a Domain you own.  Grants include all, access and delete",
                       "type": "array"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               },
               {
@@ -4531,10 +4831,10 @@ module.exports = { endpoints: [
                       "backups_cancel": "Backups cancel",
                       "backups_restore": "Backups restore",
                       "password_reset": "Password reset",
-                      "dns_zone_create": "DNS Zone create",
-                      "dns_zone_delete": "DNS Zone delete",
-                      "dns_record_create": "DNS Zone Record create",
-                      "dns_record_delete": "DNS Zone Record delete",
+                      "dns_zone_create": "Domain create",
+                      "dns_zone_delete": "Domain delete",
+                      "dns_record_create": "Domain Record create",
+                      "dns_record_delete": "Domain Record delete",
                       "stackscript_create": "Stackscript create",
                       "stackscript_publicize": "Stackscript publicize",
                       "stackscript_revise": "Stackscript revise",
@@ -4549,9 +4849,7 @@ module.exports = { endpoints: [
                       "notification": "Stateless event.",
                       "name": "EventStatus"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               }
             ],
@@ -4638,10 +4936,10 @@ module.exports = { endpoints: [
                       "backups_cancel": "Backups cancel",
                       "backups_restore": "Backups restore",
                       "password_reset": "Password reset",
-                      "dns_zone_create": "DNS Zone create",
-                      "dns_zone_delete": "DNS Zone delete",
-                      "dns_record_create": "DNS Zone Record create",
-                      "dns_record_delete": "DNS Zone Record delete",
+                      "dns_zone_create": "Domain create",
+                      "dns_zone_delete": "Domain delete",
+                      "dns_record_create": "Domain Record create",
+                      "dns_record_delete": "Domain Record delete",
                       "stackscript_create": "Stackscript create",
                       "stackscript_publicize": "Stackscript publicize",
                       "stackscript_revise": "Stackscript revise",
@@ -4656,9 +4954,7 @@ module.exports = { endpoints: [
                       "notification": "Stateless event.",
                       "name": "1"
                     }
-                  ],
-                  "endpoints": null,
-                  "methods": null
+                  ]
                 }
               }
             ],
