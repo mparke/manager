@@ -26,6 +26,26 @@ function stripATags(description) {
   return description;
 }
 
+function convertUlToArray(description) {
+  let matches;
+  const listItems = [];
+  let descText;
+  if (description) {
+    if (typeof description === "string") {
+      if (description.match(/<ul>/)) {
+        descText = description.replace(/<ul>.*/, '');
+        matches = description.match(/<li>.*?<\/li>/g);
+        matches.forEach(function(mat) {
+          listItems.push(mat.replace(/<li>/, '').replace(/<\/li>/, ''));
+        });
+        description = {descText, listItems};
+      }
+    }
+  }
+  return description;
+}
+
+
 
 function formatMethodParams(methodObj) {
   let params;
@@ -94,7 +114,7 @@ function formatMethodResource(endpoint, method) {
           } else {
             description = schemaField.description;
           }
-
+          //description = convertUlToArray(description);
           return {
             name: schemaName,
             description: description,
