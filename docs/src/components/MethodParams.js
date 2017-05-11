@@ -14,7 +14,6 @@ export default function MethodParams(props) {
         columns={[
           { label: 'Field', dataKey: 'name', headerClassName: 'FieldColumn' },
           { label: 'Type', dataKey: 'type', headerClassName: 'TypeColumn' },
-          //{ label: 'Description', dataKey: 'description', headerClassName: 'DescriptionColumn' }
           { label: 'Description', cellComponent: DescriptionCell, headerClassName: 'DescriptionColumn' }
         ]}
         data={params}
