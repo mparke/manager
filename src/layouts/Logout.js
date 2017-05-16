@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import { LOGIN_ROOT } from '~/constants';
 import { logout } from '~/actions/authentication';
-import { setSession } from './OAuth';
 import { redirect } from '~/session';
 
 export class Logout extends Component {
@@ -11,7 +10,8 @@ export class Logout extends Component {
     const { dispatch, redirect } = this.props;
 
     // Drop session info
-    dispatch(setSession());
+    // TODO: move setSession into session.js
+    // dispatch(setSession());
 
     // Reset state
     dispatch(logout());

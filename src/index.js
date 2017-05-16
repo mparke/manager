@@ -18,7 +18,6 @@ const history = syncHistoryWithStore(browserHistory, store);
 initializeAuthentication(store.dispatch);
 
 import Layout from './layouts/Layout';
-import OAuthCallbackPage from './layouts/OAuth';
 import Logout from './layouts/Logout';
 import { NotFound } from 'linode-components/errors';
 import Linodes from './linodes';
@@ -66,9 +65,6 @@ const init = () => {
             path="/logout"
             component={Logout}
           />
-          <Route path="oauth">
-            <Route path="callback" component={OAuthCallbackPage} />
-          </Route>
           <Route
             path="/linodes/:linodeLabel/weblish"
             component={Weblish}
