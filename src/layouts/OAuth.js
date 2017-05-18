@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import Cookies from 'js-cookie';
 
 import { setToken } from '~/actions/authentication';
-import { getCookie } from '~/api/util';
 import { setStorage } from '~/storage';
 
 export function setSession(oauthToken = '', scopes = '') {
@@ -27,7 +27,7 @@ export function OAuthCallbackPage(props) {
     let scopes = '*';
 
     if (!accessToken) {
-      ({ accessToken, scopes } = JSON.parse(getCookie('__loa')));
+      ({ accessToken, scopes } = JSON.parse(Cookies.get('__loa')));
     }
 
     // Token needs to be in redux state for all API calls
@@ -39,7 +39,7 @@ export function OAuthCallbackPage(props) {
     // eslint-disable-next-line no-undef
     if (!ENV_PERSONAL_ACCESS_TOKEN) {
       // We don't need the cookie anymore
-      document.cookie = '__loa=; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      Cookies.remove('__loa', { path: '', expires: Date.now() });
     }
   } catch (e) {
     return (
