@@ -26,6 +26,9 @@ import {
 import {
   Python,
   PythonIntroduction,
+  BasicSetup,
+  CoreConcepts,
+  OAuthWorkflow,
 } from './components/guides';
 
 import {
@@ -88,6 +91,9 @@ export function init() {
           <Route path={`${ROUTE_BASE_PATH}/errors`} component={Errors} />
           <Route path={`${ROUTE_BASE_PATH}/guides/python`} component={Python} />
           <Route path={`${ROUTE_BASE_PATH}/guides/python/introduction`} component={PythonIntroduction} />
+          <Route path={`${ROUTE_BASE_PATH}/guides/python/basic-setup`} component={BasicSetup} />
+          <Route path={`${ROUTE_BASE_PATH}/guides/python/oauth-Workflow`} component={OAuthWorkflow} />
+          <Route path={`${ROUTE_BASE_PATH}/guides/python/core-concepts`} component={CoreConcepts} />
           {api.endpoints.map(function(endpoint, index) {
             return generateIndexRoute({ key: index, endpoint: endpoint });
           })}
