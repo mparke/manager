@@ -121,6 +121,9 @@ export function init() {
           {pythonClientObjectTitles.map(function(pythonObject, index) {
             return generateLibraryRoutes({ index: index, libraryObject: pythonObject, prevCrumbs: []});
           })}
+          {pythonAPITitles.map(function(pythonObject, index) {
+            return generateLibraryRoutes({ index: index, libraryObject: pythonObject, prevCrumbs: []});
+          })}
         </Route>
         <Route path="*" component={NotFound} />
       </Route>
