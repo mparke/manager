@@ -33,7 +33,7 @@
                 text-align: left !important;
                 font-weight: inherit;
                 padding: 0 inherit;
-             
+
                 &:first-of-type {
                     margin-left: 0;
                 }
@@ -64,6 +64,11 @@
     }
 
     &.selected {
+        background-color: $gray;
+    }
+
+    &.current header {
+        font-weight: bold;
         background-color: $gray;
     }
 }

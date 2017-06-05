@@ -51,18 +51,22 @@ export default class Plan extends Component {
   renderPlan(plan) {
     const monthlyPrice = plan.monthly_price;
     const hourlyPrice = plan.hourly_price;
-    const { selected, onServiceSelected } = this.props;
+    const { selected, current, onServiceSelected } = this.props;
     const planClass = plan.id === selected ? 'selected' : '';
+    const curClass = plan.id === current ? 'current' : '';
 
     return (
       <div
-        className={`plan ${planClass}`}
+        className={`plan ${planClass} ${curClass}`}
         key={plan.id}
         onClick={() => onServiceSelected(plan.id)}
       >
         <header>
           <div className="title">
-            <PlanStyle plan={plan} />
+            <PlanStyle
+              plan={plan}
+              current={plan.id === current}
+            />
           </div>
         </header>
         <div className="option-contents">

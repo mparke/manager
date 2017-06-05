@@ -32,6 +32,7 @@ export class ResizePage extends Component {
 
     this.state = {
       type: props.linode.type.id,
+      current: props.linode.type.id,
       errors: {},
       loading: false,
     };
@@ -54,7 +55,7 @@ export class ResizePage extends Component {
 
   render() {
     const { types } = this.props;
-    const { type, errors, loading } = this.state;
+    const { type, current, errors, loading } = this.state;
 
     return (
       <Card header={<CardHeader title="Resize" />}>
@@ -63,6 +64,7 @@ export class ResizePage extends Component {
             <Plan
               types={types.types}
               selected={type}
+              current={current}
               onServiceSelected={type => this.setState({ type })}
             />
           </FormGroup>
