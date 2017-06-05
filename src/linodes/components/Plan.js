@@ -95,6 +95,7 @@ export default class Plan extends Component {
 
 Plan.propTypes = {
   selected: PropTypes.string,
+  current: PropTypes.string,
   onServiceSelected: PropTypes.func,
   types: PropTypes.object,
 };

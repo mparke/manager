@@ -19,4 +19,5 @@ export default function PlanStyle(props) {
 
 PlanStyle.propTypes = {
   plan: PropTypes.object,
+  current: PropTypes.bool,
 };
