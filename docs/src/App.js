@@ -29,6 +29,9 @@ import {
   BasicSetup,
   CoreConcepts,
   OAuthWorkflow,
+  Curl,
+  CreateLinode,
+  TestingWithCurl,
 } from './components/guides';
 
 import {
@@ -55,7 +58,7 @@ const pythonAPITitles = pythonDataTitles.filter(function(pythonData) {
   return (pythonData.path !== 'LinodeLoginClient' && pythonData.path !== 'LinodeClient');
 });
 
-import { ROUTE_BASE_PATH } from '~/constants';
+import { API_VERSION } from '~/constants';
 
 
 ReactGA.initialize(GA_ID); // eslint-disable-line no-undef
@@ -112,6 +115,9 @@ export function init() {
           <Route path={`${ROUTE_BASE_PATH}/guides/python/basic-setup`} component={BasicSetup} />
           <Route path={`${ROUTE_BASE_PATH}/guides/python/oauth-Workflow`} component={OAuthWorkflow} />
           <Route path={`${ROUTE_BASE_PATH}/guides/python/core-concepts`} component={CoreConcepts} />
+          <Route path={`/${API_VERSION}/guides/curl`} component={Curl} />
+          <Route path={`/${API_VERSION}/guides/curl/creating-a-linode`} component={CreateLinode} />
+          <Route path={`/${API_VERSION}/guides/curl/testing-with-curl`} component={TestingWithCurl} />
           {api.endpoints.map(function(endpoint, index) {
             return generateIndexRoute({ key: index, endpoint: endpoint });
           })}
