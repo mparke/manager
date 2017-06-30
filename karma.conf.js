@@ -49,17 +49,6 @@ module.exports = function(config) {
             use: ['file-loader'],
             include: path.join(__dirname, 'node_modules')
           },
-          {
-            test: /\.js$|\.jsx$/,
-            enforce: 'post',
-            use: {
-              loader: 'istanbul-instrumenter-loader',
-              options: {
-                esModules: true
-              }
-            },
-            exclude: /node_modules|\.spec\.js$/,
-          }
         ]
       },
       externals: {
@@ -93,11 +82,16 @@ module.exports = function(config) {
       },
       noInfo: true
     },
-    reporters: ['spec', 'coverage'],
-    coverageReporter: {
-      type: 'lcov',
+    reporters: ['spec', 'coverage-istanbul'],
+    coverageIstanbulReporter: {
+      reports: ['text-summary', 'lcovonly', 'html'],
       dir: 'coverage',
-      subdir: '.'
+      'report-config': {
+        html: {
+          subdir: 'html'
+        }
+      },
+      fixWebpackSourcePaths: true
     },
     plugins: [
       require("karma-webpack"),
@@ -106,7 +100,8 @@ module.exports = function(config) {
       require("karma-phantomjs-launcher"),
       require("karma-chrome-launcher"),
       require("karma-sourcemap-loader"),
-      require("karma-coverage")
+      require("karma-coverage"),
+      require("karma-coverage-istanbul-reporter")
     ],
     browserNoActivityTimeout: 100000
   };
