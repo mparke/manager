@@ -82,16 +82,11 @@ module.exports = function(config) {
       },
       noInfo: true
     },
-    reporters: ['spec', 'coverage-istanbul'],
-    coverageIstanbulReporter: {
-      reports: ['text-summary', 'lcovonly', 'html'],
+    reporters: ['spec', 'coverage'],
+    coverageReporter: {
+      type: 'lcov',
       dir: 'coverage',
-      'report-config': {
-        html: {
-          subdir: 'html'
-        }
-      },
-      fixWebpackSourcePaths: true
+      subdir: '.'
     },
     plugins: [
       require("karma-webpack"),
@@ -101,7 +96,6 @@ module.exports = function(config) {
       require("karma-chrome-launcher"),
       require("karma-sourcemap-loader"),
       require("karma-coverage"),
-      require("karma-coverage-istanbul-reporter")
     ],
     browserNoActivityTimeout: 100000
   };
