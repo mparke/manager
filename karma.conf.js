@@ -48,6 +48,17 @@ module.exports = function(config) {
             test: /\.svg$/,
             use: ['file-loader'],
             include: path.join(__dirname, 'node_modules')
+          },
+          {
+            test: /\.js$|\.jsx$/,
+            enforce: 'post',
+            use: {
+              loader: 'istanbul-instrumenter-loader',
+              options: {
+                esModules: true
+              }
+            },
+            exclude: /node_modules|\.spec\.js$/,
           }
         ]
       },
