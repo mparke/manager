@@ -25,9 +25,14 @@ function renderNavListItems(navItems, path, checkActiveItem) {
 export default function VerticalNavSection(props) {
   const { navItems, title, path, checkActiveItem } = props;
 
+  let titleHeading;
+  if (title) {
+    titleHeading = (<h3>{title}</h3>);
+  }
+
   return (
     <div className="VerticalNav-section">
-      <h3>{title}</h3>
+      {titleHeading}
       <ul>
         {renderNavListItems(navItems, path, checkActiveItem)}
       </ul>
