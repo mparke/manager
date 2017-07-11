@@ -68,8 +68,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        use: ['file-loader'],
-        include: path.join(__dirname, 'node_modules')
+        loader: ['file-loader'],
       }
     ]
   }

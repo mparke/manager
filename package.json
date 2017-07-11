@@ -125,6 +125,9 @@
     "react-tooltip": "^3.3.0",
     "redux": "^3.0.5",
     "redux-thunk": "^2.1.0",
+    "webpack": "https://registry.npmjs.org/webpack/-/webpack-2.6.1.tgz",
+    "webpack-dev-middleware": "https://registry.npmjs.org/webpack-dev-middleware/-/webpack-dev-middleware-1.11.0.tgz",
+    "webpack-hot-middleware": "https://registry.npmjs.org/webpack-hot-middleware/-/webpack-hot-middleware-2.18.0.tgz",
     "xterm": "^2.0.1",
     "zxcvbn": "^4.4.1"
   }

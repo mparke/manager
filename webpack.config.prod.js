@@ -7,7 +7,10 @@ var _package = require('./package.json');
 _.devtool = 'cheap-module-source-map';
 _.entry = './src/index';
 _.plugins = [
-  new webpack.optimize.CommonsChunkPlugin('common.js'),
+  new webpack.optimize.CommonsChunkPlugin({
+    name: "commons",
+    filename: "commons.js",
+  }),
   new webpack.DefinePlugin({
     'process.env': {
       'NODE_ENV': JSON.stringify('production')
@@ -25,7 +28,6 @@ _.plugins = [
       warnings: false
     }
   }),
-  new webpack.optimize.DedupePlugin(),
   new webpack.optimize.AggressiveMergingPlugin()
 ];
 
