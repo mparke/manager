@@ -41,7 +41,7 @@ export default class TableRow extends Component {
 
     const selectedClass = selected ? 'TableRow--selected' : '';
     return (
-      <tr className={`TableRow ${className} ${selectedClass}`} onClick={onClick}>
+      <div className={`TableRow ${className} ${selectedClass}`} onClick={onClick}>
         {columns.map((column, index) => {
           // rendering options from most to least specific
 
@@ -80,7 +80,7 @@ export default class TableRow extends Component {
             />
           );
         })}
-      </tr>
+      </div>
     );
   }
 }

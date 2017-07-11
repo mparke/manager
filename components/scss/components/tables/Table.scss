@@ -30,3 +30,13 @@
         }
     }
 }
+
+.TableHeaderRow {
+    display: block;
+}
+
+.TableHeaderCell,
+.TableCell {
+    display: inline-block;
+    padding: 5px 10px;
+}

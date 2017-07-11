@@ -8,7 +8,7 @@ export default function TableHeaderRow(props) {
   const { columns } = props;
 
   return (
-    <tr>
+    <div className="TableHeaderRow">
       {columns.map(function (column, index) {
         return (
           <TableHeaderCell
@@ -18,7 +18,7 @@ export default function TableHeaderRow(props) {
           />
         );
       })}
-    </tr>
+    </div>
   );
 }
 

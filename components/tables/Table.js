@@ -41,14 +41,14 @@ export default function Table(props) {
     tableContent = (<p>{noDataMessage}</p>);
   } else {
     tableContent = (
-      <table id={id} className={`Table ${disableHeader ? 'Table--noHeader' : ''} ${className}`}>
-        <thead>
+      <div id={id} className={`Table ${disableHeader ? 'Table--noHeader' : ''} ${className}`}>
+        <div>
           <TableHeaderRow columns={columns} />
-        </thead>
-        <tbody>
+        </div>
+        <div>
           {renderRowsFn(columns, data, onToggleSelect, selectedMap)}
-        </tbody>
-      </table>
+        </div>
+      </div>
     );
   }
 

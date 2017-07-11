@@ -28,13 +28,13 @@ export default function TableCell(props) {
   }
 
   return (
-    <td
+    <div
       className={`TableCell ${className} ${columnClassName}`}
     >
       <div className="TableCell-content">
         {children}
       </div>
-    </td>
+    </div>
   );
 }
 

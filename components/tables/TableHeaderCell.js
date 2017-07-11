@@ -5,7 +5,7 @@ import { PropTypes } from 'prop-types';
 export default function TableHeaderCell(props) {
   const { className, text } = props;
 
-  return (<th className={className}>{text}</th>);
+  return (<div className={`TableHeaderCell ${className}`}>{text}</div>);
 }
 
 TableHeaderCell.propTypes = {
